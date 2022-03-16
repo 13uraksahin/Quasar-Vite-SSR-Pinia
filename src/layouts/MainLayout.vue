@@ -48,6 +48,9 @@ const linksList = [
 ]
 
 const leftDrawerOpen = ref(false)
+const toggleLeftDrawer = () => {
+  leftDrawerOpen.value = !leftDrawerOpen.value
+}
 </script>
 
 <template>
@@ -64,7 +67,7 @@ const leftDrawerOpen = ref(false)
         />
 
         <q-toolbar-title>
-          Quasar App
+          <router-link style="text-decoration: unset; color: unset;" to="/">Quasar App</router-link>
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>

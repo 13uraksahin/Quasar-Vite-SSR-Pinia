@@ -41,7 +41,7 @@ const notify = ({ value, key, post }) => {
               <q-item-label>{{ `${key}: ` }}</q-item-label>
             </q-item-section>
             <q-item-section side class="col">
-              <q-item-label>{{ value }}</q-item-label>
+              <q-item-label class="text-right">{{ value }}</q-item-label>
             </q-item-section>
           </q-item>
         </q-list>

@@ -15,7 +15,7 @@ export const usePosts = defineStore('usePosts', {
       return new Promise((resolve, reject) => {
         const config = {
           method: 'get',
-          url: `https://jsonplaceholder.typicode.com/posts/${postId}`
+          url: postId ? `https://jsonplaceholder.typicode.com/posts/${postId}` : 'https://jsonplaceholder.typicode.com/posts'
         }
 
         axios.request(config).then(response => {

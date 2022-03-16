@@ -16,10 +16,8 @@ export default store(({ ssrContext }) => {
 
   if (process.env.MODE === 'ssr') {
     if (process.env.SERVER && ssrContext) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
       ssrContext.onRendered(() => {
         // unwrapping the state for serialization
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         const state = unref(ssrContext.state)
         ssrContext.state = state
       })
