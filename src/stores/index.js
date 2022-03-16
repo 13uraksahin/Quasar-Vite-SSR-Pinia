@@ -1,5 +1,6 @@
 import { store } from 'quasar/wrappers'
 import { createPinia } from 'pinia'
+import { unref } from 'vue'
 
 /*
  * If not building with SSR mode, you can
@@ -10,8 +11,25 @@ import { createPinia } from 'pinia'
  * with the Store instance.
  */
 
-export default store((/* { ssrContext } */) => {
+export default store(({ ssrContext }) => {
   const pinia = createPinia()
+
+  if (process.env.MODE === 'ssr') {
+    if (process.env.SERVER && ssrContext) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+      ssrContext.onRendered(() => {
+        // unwrapping the state for serialization
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+        const state = unref(ssrContext.state)
+        ssrContext.state = state
+      })
+    }
+    if (process.env.CLIENT) {
+      pinia.replaceState = (state) => {
+        pinia.state.value = state
+      }
+    }
+  }
 
   // You can add Pinia plugins here
   // pinia.use(SomePiniaPlugin)
