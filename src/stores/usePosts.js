@@ -11,11 +11,11 @@ export const usePosts = defineStore('usePosts', {
   },
 
   actions: {
-    fetch () {
+    fetch ({ postId }) {
       return new Promise((resolve, reject) => {
         const config = {
           method: 'get',
-          url: 'https://jsonplaceholder.typicode.com/posts'
+          url: `https://jsonplaceholder.typicode.com/posts/${postId}`
         }
 
         axios.request(config).then(response => {

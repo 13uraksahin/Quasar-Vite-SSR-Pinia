@@ -9,7 +9,7 @@ export default function ({ store }) {
       component: () => import('layouts/MainLayout.vue'),
       children: [
         { path: '', component: () => import('pages/IndexPage.vue') },
-        { name: 'PostsPage', path: 'posts', component: () => import('pages/PostsPage.vue'), props: true }
+        { name: 'PostsPage', path: 'posts/:postId?', component: () => import('pages/PostsPage.vue'), props: true }
       ]
     },
 
