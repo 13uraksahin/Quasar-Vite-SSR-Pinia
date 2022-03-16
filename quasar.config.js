@@ -30,8 +30,7 @@ module.exports = configure(function (/* ctx */) {
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
       'i18n',
-      'axios',
-      'notify'
+      'axios'
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -92,7 +91,21 @@ module.exports = configure(function (/* ctx */) {
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
-      config: {},
+      config: {
+        loadingBar: {
+          position: 'top',
+          size: '4px',
+          color: 'cyan',
+          skipHijack: true
+        },
+        notify: {
+          position: 'top-right',
+          timeout: 5000,
+          progress: true,
+          html: true,
+          actions: [{ icon: 'close', color: 'white' }]
+        }
+      },
 
       // iconSet: 'material-icons', // Quasar icon set
       // lang: 'en-US', // Quasar language pack
@@ -106,7 +119,10 @@ module.exports = configure(function (/* ctx */) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'LoadingBar',
+        'Loading',
+        'Meta'
       ]
     },
 
